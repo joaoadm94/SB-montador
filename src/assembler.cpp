@@ -1,5 +1,13 @@
 #include "assembler.h"
 
+Assembler::Assembler(char* args[]) {
+    this->mode =  args[1];
+    this->input =  args[2];
+    this->output =  args[3];
+}
+
+Assembler::~Assembler(){};
+
 std::vector<Token*>* Assembler::getTokens() {
     return tokens;
 }
@@ -24,11 +32,10 @@ void Assembler::setMode(char* mode) {
     this->mode = mode;
 }
 
-Assembler::Assembler(char* args[]) {
-    this->mode =  args[1];
-    this->input =  args[2];
-    this->output =  args[3];
+void Assembler::setPreprocessor(Preprocessor* preprocessor){
+    this->preprocessor = preprocessor;
 }
+
 
 void Assembler::loadFile(){
 
@@ -58,6 +65,10 @@ void Assembler::showTokens() {
         //std::cout << "Length: " << token->GetLength() << std::endl;
         position += 1;
     }
+}
+
+void Assembler::preprocess() {
+    this->preprocessor->preprocess(tokens);
 }
 
 void Assembler::formatPreprocessed() {

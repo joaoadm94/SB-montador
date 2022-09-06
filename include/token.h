@@ -1,3 +1,6 @@
+#ifndef TOKEN
+#define TOKEN
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -40,3 +43,5 @@ class Tokenizer {
     public:
         std::vector<Token*>* Tokenize(std::fstream * const &file);  
 };
+
+#endif

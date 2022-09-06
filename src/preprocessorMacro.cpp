@@ -1,4 +1,5 @@
 #include "preprocessorMacro.h"
+PreprocessorMacro::PreprocessorMacro() : Preprocessor(){}
 
 // Preprocessamento das Macro: expansao no codigo + remocao
 // das diretivas antes do codigo

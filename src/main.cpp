@@ -1,4 +1,5 @@
 #include "assembler.h"
+#include "assemblerFactory.h"
 
 int main(int argc, char* argv[]) {
     

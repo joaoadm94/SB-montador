@@ -17,7 +17,7 @@ OBJ_COM=$(CPP_COM:$(SRC_DIRECTORY)/%.cpp=$(OBJ_DIRECTORY)/%.o)
 
 
 #Compilator Flags
-CC_FLAGS = -g -I$(INC_DIRECTORY) -Wall -Wextra
+CC_FLAGS = -g -I$(INC_DIRECTORY) -Wall -Wextra -frtti
 
 #Operation System Check
 ifeq ($(OS),Windows_NT)

@@ -1,6 +1,5 @@
 #include "preprocessorConstSpace.h"
-
-PreprocessorConstSpace::PreprocessorConstSpace();
+PreprocessorConstSpace::PreprocessorConstSpace() : Preprocessor(){}
 
 // Coloca as diretivas CONST e SPACE ao fim do codigo
 void PreprocessorConstSpace::preprocess(std::vector<Token*>* tokens) {

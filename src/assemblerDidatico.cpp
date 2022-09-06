@@ -1,9 +1,13 @@
 #include "assemblerDidatico.h"
 
-AssemblerDidatico::AssemblerDidatico(char* args[]) : Assembler(args){
+AssemblerDidatico::AssemblerDidatico(char* args[]) : Assembler(args) {
     std::cout << "Assembler Didatico" << std::endl;
-    
+    PreprocessorFactory pf;
+    setMode(&args[1][1]);
+    setPreprocessor(pf.criarPreprocessor(getMode()));
 }
+
+AssemblerDidatico::~AssemblerDidatico() {}
 
 void AssemblerDidatico::requestTokens() {
     Tokenizer t;
@@ -11,26 +15,13 @@ void AssemblerDidatico::requestTokens() {
 }
 
 void AssemblerDidatico::run() {
-    if (std::strcmp(getMode(),"-p") == 0) {
-        loadFile();
-        requestTokens();
-        preprocessEquIf(Assembler::getTokens());
-        formatPreprocessed();
-    }
+    loadFile();
+    requestTokens();
+    preprocess();
+    //ShowTokens();
+    formatPreprocessed();
 
-    if (std::strcmp(getMode(),"-m") == 0) {
-        loadFile();
-        requestTokens();
-        preprocessMacro();
-        //ShowTokens();
-        formatPreprocessed();
-    }
-
-    if (std::strcmp(getMode(),"-o") == 0) {
-        loadFile();
-        requestTokens();
-        //ShowTokens();
-        preprocessConstSpace();
+    if (std::strcmp(getMode(),"o") == 0) {
         analyze();
         synthesize();
     }

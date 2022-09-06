@@ -1,9 +1,11 @@
 #include "assembler.h"
+#include "preprocessorFactory.h"
 
 class AssemblerDidatico: public Assembler {
     private:
-        void requestTokens();
     public:
         AssemblerDidatico(char* args[]);
-        void run();
+        ~AssemblerDidatico();
+        void requestTokens() override;
+        void run() override;
 };

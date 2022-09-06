@@ -1,4 +1,6 @@
 #include "preprocessorEquIf.h"
+
+PreprocessorEquIf::PreprocessorEquIf() : Preprocessor(){}
 // Preprocessamento das diretivas EQU e IF: avaliacao no codigo + remocao
 // das diretivas antes do codigo
 void PreprocessorEquIf::preprocess(std::vector<Token*>* tokens) {
@@ -6,7 +8,7 @@ void PreprocessorEquIf::preprocess(std::vector<Token*>* tokens) {
     int tokenIndex = 0;
     int begin, end, line;
     std::string str;
-    std::regex labelRegex (".*:");
+    std::regex labelRegex(".*:");
     std::unordered_map<std::string, std::string> equMap;
 
     while (tokenIndex < (int) tokens->size()) {

@@ -3,9 +3,9 @@
 #include "preprocessorConstSpace.h"
 #include "preprocessorMacro.h"
 
-Preprocessor*  PreprocessorFactory::criarPreprocessor(char mode) {
+Preprocessor*  PreprocessorFactory::criarPreprocessor(char* mode) {
     Preprocessor* preprocessor;
-    switch (mode) {
+    switch (*mode) {
         case 'p':
             preprocessor = new PreprocessorEquIf();
             break;
