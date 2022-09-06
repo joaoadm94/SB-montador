@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     AssemblerFactory af;
     Assembler* a = af.criarAssembler(argv);
 
-    a->Run();
+    a->run();
 
     return 0;
 }

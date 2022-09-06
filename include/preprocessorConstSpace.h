@@ -2,5 +2,5 @@
 
 class PreprocessorConstSpace: public Preprocessor {
     public: 
-        void preprocess();
+        void preprocess(std::vector<Token*>* tokens);
 };

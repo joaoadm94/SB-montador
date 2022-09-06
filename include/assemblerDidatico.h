@@ -2,8 +2,8 @@
 
 class AssemblerDidatico: public Assembler {
     private:
-        void RequestTokens();
+        void requestTokens();
     public:
         AssemblerDidatico(char* args[]);
-        void Run();
+        void run();
 };

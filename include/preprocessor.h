@@ -1,6 +1,7 @@
 #include "assembler.h"
 
 class Preprocessor {
-    public: 
-        virtual void preprocess() = 0;
+    public:
+        Preprocessor();
+        virtual void preprocess(std::vector<Token*>* tokens) = 0;
 };

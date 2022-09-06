@@ -1,6 +1,7 @@
 #include "preprocessor.h"
 
 class PreprocessorMacro: public Preprocessor {
-    public: 
-        void preprocess();
+    public:
+        PreprocessorMacro();
+        void preprocess(std::vector<Token*>* tokens);
 };

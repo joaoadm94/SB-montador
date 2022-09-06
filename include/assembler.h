@@ -16,6 +16,7 @@ class Assembler {
         std::fstream* file;
         std::vector<Token*>* tokens;
         int lineCounter;
+        Preprocessor* preprocessor;
         OpcodeTable opTable;
         DirectiveTable dirTable;
         SymbolTable symbolTable;
@@ -26,17 +27,15 @@ class Assembler {
         void setFile(std::fstream* file);
         char* getMode();
         void setMode(char* c);
-        void SetNextAsOperand(Token* token, int* tokenIndex, int operandAmount);
-        void PreprocessEquIf();
-        void PreprocessMacro();
-        void PreprocessConstSpace();
-        void FormatPreprocessed();
-        void LoadFile(); // Abre o arquivo de entrada
-        virtual void RequestTokens() = 0; // Solicita os tokens do código
-        void ShowTokens(); // Exibe os tokens armazenados
-        void Analyze(); // Faz a primeira passagem de análise pelo código
-        void Synthesize(); // Segunda passagem, gerando código objeto
-        void WriteToFile(std::string str); // Escreve o código objeto em arquivo
+        void setNextAsOperand(Token* token, int* tokenIndex, int operandAmount);
+        void preprocess();
+        void formatPreprocessed();
+        void loadFile(); // Abre o arquivo de entrada
+        virtual void requestTokens() = 0; // Solicita os tokens do código
+        void showTokens(); // Exibe os tokens armazenados
+        void analyze(); // Faz a primeira passagem de análise pelo código
+        void synthesize(); // Segunda passagem, gerando código objeto
+        void writeToFile(std::string str); // Escreve o código objeto em arquivo
         Assembler(char* args[]);
-        virtual void Run() = 0;
+        virtual void run();
 };

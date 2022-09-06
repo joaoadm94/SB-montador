@@ -1,8 +1,7 @@
 #include "preprocessorEquIf.h"
-
 // Preprocessamento das diretivas EQU e IF: avaliacao no codigo + remocao
 // das diretivas antes do codigo
-void PreprocessorEquIf::preprocess() {
+void PreprocessorEquIf::preprocess(std::vector<Token*>* tokens) {
     Token *token, *last;
     int tokenIndex = 0;
     int begin, end, line;

@@ -2,14 +2,14 @@
 
 // Preprocessamento das Macro: expansao no codigo + remocao
 // das diretivas antes do codigo
-void PreprocessorMacro::preprocess() {
+void PreprocessorMacro::preprocess(std::vector<Token*>* tokens) {
     std::regex labelRegex (".*:");
     Token* token;
     std::string macroLabel;
     int begin = -1, end = -1;
     int tokenIndex = 0;
 
-    while(tokenIndex < (int) tokens->size()) {
+    while(tokenIndex < (int)  tokens->size()) {
         token = tokens->at(tokenIndex);
         if (token->GetContent().compare("MACRO") == 0) {
             begin = tokenIndex - 1;

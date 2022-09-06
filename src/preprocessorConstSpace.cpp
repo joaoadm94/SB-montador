@@ -1,7 +1,9 @@
 #include "preprocessorConstSpace.h"
 
+PreprocessorConstSpace::PreprocessorConstSpace();
+
 // Coloca as diretivas CONST e SPACE ao fim do codigo
-void PreprocessorConstSpace::preprocess() {
+void PreprocessorConstSpace::preprocess(std::vector<Token*>* tokens) {
     int tokenIndex = 0;
     std::string tokenContent;
 
@@ -24,5 +26,5 @@ void PreprocessorConstSpace::preprocess() {
         }
 
     }
-    ShowTokens();
+    //ShowTokens();
 }

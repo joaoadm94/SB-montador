@@ -1,6 +1,7 @@
 #include "preprocessor.h"
 
 class PreprocessorEquIf: public Preprocessor {
-    public: 
-        void preprocess();
+    public:
+        PreprocessorEquIf();
+        void preprocess(std::vector<Token*>* tokens);
 };

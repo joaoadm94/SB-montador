@@ -30,7 +30,7 @@ Assembler::Assembler(char* args[]) {
     this->output =  args[3];
 }
 
-void Assembler::LoadFile(){
+void Assembler::loadFile(){
 
     std::fstream* file = new std::fstream();    
     file->open(input);
@@ -45,7 +45,7 @@ void Assembler::LoadFile(){
     }
 }
 
-void Assembler::ShowTokens() {
+void Assembler::showTokens() {
     Token *token;
     int position = 0;
     while(position < (int) tokens->size()) {
@@ -60,7 +60,7 @@ void Assembler::ShowTokens() {
     }
 }
 
-void Assembler::FormatPreprocessed() {
+void Assembler::formatPreprocessed() {
     Token* token;
     int line, tokenIndex = 0;
     std::string str;
@@ -75,11 +75,11 @@ void Assembler::FormatPreprocessed() {
         str.append(token->GetContent() + " ");
         tokenIndex++;
     }
-    WriteToFile(str);
+    writeToFile(str);
 }
 
 // Define os proximos n tokens como operandos
-void Assembler::SetNextAsOperand(Token* token, int* tokenIndex, int operandAmount) {
+void Assembler::setNextAsOperand(Token* token, int* tokenIndex, int operandAmount) {
     while (operandAmount > 0) {
         *tokenIndex = *tokenIndex + 1;
         operandAmount--;
@@ -90,7 +90,7 @@ void Assembler::SetNextAsOperand(Token* token, int* tokenIndex, int operandAmoun
 }
 
 // Realiza a primeira analise do codigo para montagem
-void Assembler::Analyze() {
+void Assembler::analyze() {
     std::regex labelRegex (".*:");
     std::regex beginsWithNumber ("[0-9].*");
     int memoryPosition = 0;
@@ -127,7 +127,7 @@ void Assembler::Analyze() {
                 line = token->GetLine();
                 Opcode* op = opTable.GetOpcode(index);
                 memoryPosition += op->GetWordSize();
-                SetNextAsOperand(token, &tokenIndex, op->GetOperandAmount());
+                setNextAsOperand(token, &tokenIndex, op->GetOperandAmount());
                 // Conferir se tem mais tokens na mesma linha
                 while(tokenIndex < (int) tokens->size()) {
                     if(tokens->at(tokenIndex)->GetLine() == line) {
@@ -148,7 +148,7 @@ void Assembler::Analyze() {
                     Directive* dir = dirTable.GetDirective(index);
                     // chamar subrotina que executa a diretiva
                     memoryPosition += dir->GetWordSize();                       
-                    SetNextAsOperand(token, &tokenIndex, dir->GetOperandAmount());
+                    setNextAsOperand(token, &tokenIndex, dir->GetOperandAmount());
                     // Conferir se tem mais tokens na mesma linha   
                     while (tokenIndex < (int) tokens->size()) {
                         if(tokens->at(tokenIndex)->GetLine() == line) {
@@ -174,7 +174,7 @@ void Assembler::Analyze() {
 }
 
 
-void Assembler::Synthesize() {
+void Assembler::synthesize() {
     std::string objectCode;
     std::string spaceConst;
     Token* token;
@@ -221,11 +221,11 @@ void Assembler::Synthesize() {
         }
         tokenIndex++;
     }
-    WriteToFile(objectCode);
+    writeToFile(objectCode);
     return;
 }
 
-void Assembler::WriteToFile(std::string str) {
+void Assembler::writeToFile(std::string str) {
     std::fstream* file = getFile();
     if(file) {
         file->close();

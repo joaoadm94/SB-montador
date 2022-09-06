@@ -2,36 +2,37 @@
 
 AssemblerDidatico::AssemblerDidatico(char* args[]) : Assembler(args){
     std::cout << "Assembler Didatico" << std::endl;
+    
 }
 
-void AssemblerDidatico::RequestTokens() {
+void AssemblerDidatico::requestTokens() {
     Tokenizer t;
     setTokens(t.Tokenize(getFile()));
 }
 
-void AssemblerDidatico::Run() {
+void AssemblerDidatico::run() {
     if (std::strcmp(getMode(),"-p") == 0) {
-        LoadFile();
-        RequestTokens();
-        PreprocessEquIf();
-        FormatPreprocessed();
+        loadFile();
+        requestTokens();
+        preprocessEquIf(Assembler::getTokens());
+        formatPreprocessed();
     }
 
     if (std::strcmp(getMode(),"-m") == 0) {
-        LoadFile();
-        RequestTokens();
-        PreprocessMacro();
+        loadFile();
+        requestTokens();
+        preprocessMacro();
         //ShowTokens();
-        FormatPreprocessed();
+        formatPreprocessed();
     }
 
     if (std::strcmp(getMode(),"-o") == 0) {
-        LoadFile();
-        RequestTokens();
+        loadFile();
+        requestTokens();
         //ShowTokens();
-        PreprocessConstSpace();
-        Analyze();
-        Synthesize();
+        preprocessConstSpace();
+        analyze();
+        synthesize();
     }
 }
 
