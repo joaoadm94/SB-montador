@@ -6,6 +6,5 @@ class AssemblerDidatico: public Assembler {
     public:
         AssemblerDidatico(char* args[]);
         ~AssemblerDidatico();
-        void requestTokens() override;
         void run() override;
 };

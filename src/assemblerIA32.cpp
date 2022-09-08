@@ -1,12 +1,14 @@
 #include "assemblerIA32.h"
+#include "tokenizerIA32.h"
 
 AssemblerIA32::AssemblerIA32(char* args[]) : Assembler(args){
-    std::cout << "Assembler IA32" << std::endl;
+    setTokenizer(new TokenizerIA32());
 }
 
 AssemblerIA32::~AssemblerIA32() {}
 
-void AssemblerIA32::requestTokens() {
+void AssemblerIA32::run(){
+    loadFile();
+    requestTokens();
+    showTokens();
 }
-
-void AssemblerIA32::run(){}

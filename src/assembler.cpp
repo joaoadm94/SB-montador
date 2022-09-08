@@ -36,6 +36,9 @@ void Assembler::setPreprocessor(Preprocessor* preprocessor){
     this->preprocessor = preprocessor;
 }
 
+void Assembler::setTokenizer(Tokenizer* tokenizer) {
+    this->tokenizer = tokenizer;
+}
 
 void Assembler::loadFile(){
 
@@ -52,8 +55,14 @@ void Assembler::loadFile(){
     }
 }
 
+void Assembler::requestTokens() {
+    setTokens(new std::vector<Token*>());
+    tokenizer->tokenize(getFile(), getTokens());
+}
+
 void Assembler::showTokens() {
     Token *token;
+    std::vector<Token*>* tokens = getTokens();
     int position = 0;
     while(position < (int) tokens->size()) {
         token = tokens->at(position);

@@ -1,20 +1,17 @@
 #include "assemblerDidatico.h"
+#include "tokenizerDidatico.h"
 
 AssemblerDidatico::AssemblerDidatico(char* args[]) : Assembler(args) {
-    std::cout << "Assembler Didatico" << std::endl;
     PreprocessorFactory pf;
     setMode(&args[1][1]);
     setPreprocessor(pf.criarPreprocessor(getMode()));
+    setTokenizer(new TokenizerDidatico());
 }
 
 AssemblerDidatico::~AssemblerDidatico() {}
 
-void AssemblerDidatico::requestTokens() {
-    Tokenizer t;
-    setTokens(t.Tokenize(getFile()));
-}
-
 void AssemblerDidatico::run() {
+    std::cout << "Oi" << std::endl;
     loadFile();
     requestTokens();
     preprocess();

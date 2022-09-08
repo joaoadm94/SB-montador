@@ -24,6 +24,7 @@ class Assembler {
         OpcodeTable opTable;
         DirectiveTable dirTable;
         SymbolTable symbolTable;
+        Tokenizer* tokenizer;
     public:
         // Constructor, Destructor
         Assembler(char* args[]);
@@ -36,12 +37,13 @@ class Assembler {
         char* getMode();
         void setMode(char* c);
         void setPreprocessor(Preprocessor* preprocessor);
+        void setTokenizer(Tokenizer* tokenizer);
         void setNextAsOperand(Token* token, int* tokenIndex, int operandAmount);
         // Outros metodos
         void preprocess();
         void formatPreprocessed();
         void loadFile(); // Abre o arquivo de entrada
-        virtual void requestTokens() = 0; // Solicita os tokens do código
+        void requestTokens(); // Solicita os tokens do código
         void showTokens(); // Exibe os tokens armazenados
         void analyze(); // Faz a primeira passagem de análise pelo código
         void synthesize(); // Segunda passagem, gerando código objeto

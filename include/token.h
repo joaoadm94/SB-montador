@@ -41,7 +41,7 @@ class Token {
 class Tokenizer {
     private:
     public:
-        std::vector<Token*>* Tokenize(std::fstream * const &file);  
+        virtual void tokenize(std::fstream * const &file, std::vector<Token*>* tokens) = 0;  
 };
 
 #endif
